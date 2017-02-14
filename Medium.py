@@ -5,15 +5,14 @@ row , col , pix = img.shape
 cv2.imshow("Noise",img)
 for i in range(1,row-1):
     for j in range(1,col-1):
-        tmp = [ img[i-1][j+1][0] , img[i][j+1][0],img[i+1][j+1][0],
-                img[i - 1][j][0] , img[i][j][0] , img[i+1][j][0],
-                img[i - 1][j - 1][0],img[i][j-1][0],img[i+1][j-1][0]
+        for k in range(0,pix):
+            tmp = [ img[i-1][j+1][k] , img[i][j+1][k],img[i+1][j+1][k],
+                img[i - 1][j][k] , img[i][j][k] , img[i+1][j][k],
+                img[i - 1][j - 1][k],img[i][j-1][k],img[i+1][j-1][k]
                 ]
-        tmp.sort()
-        # M = len(tmp)/2 # middle of the list
-        img[i][j][0] = tmp[4]
-        img[i][j][1] = tmp[4]
-        img[i][j][2] = tmp[4]
+            tmp.sort()
+            M = len(tmp)/2 # middle of the list
+            img[i][j][k] = tmp[M]
 cv2.imshow("Decrease_Noise",img)
 k = cv2.waitKey(0)
 if k == ord('s'):
