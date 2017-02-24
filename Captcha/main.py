@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 import pytesseract
 
-img = cv2.imread('pic/10.jpg',1)
+img = cv2.imread('pic/1.jpg',1)
 row,col,pix = img.shape
 img = cv2.resize(img,(col*2,row*2))
 row = row*2
