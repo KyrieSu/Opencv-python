@@ -1,4 +1,4 @@
-*/pic/
-.pdf
-.jpg
-.png
+Captcha/pic/
+*.pdf
+*.jpg
+*.png
