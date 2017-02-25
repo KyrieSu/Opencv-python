@@ -22,7 +22,7 @@ for i in xrange(row):
             if img1[i][j][k] > val:
                 img1[i][j][k] = img1[i][j][k] - val
             else:
-                pass
+                img1[i][j][k] = 0
 
 #img2[:,:] = img2[:,:] - val
 #decrease value for each in img2
@@ -31,7 +31,7 @@ for i in xrange(H):
         if img2[i][j] > val:
             img2[i][j]= img2[i][j] - val
         else:
-            pass
+            img2[i][j] = 0
 
 title = ['AFTER_image1','AFTER_image2']
 
@@ -39,6 +39,6 @@ for i in xrange(len(img)):
     cv2.namedWindow(title[i],cv2.WINDOW_NORMAL)
     cv2.imshow(title[i],img[i])
     cv2.imwrite(title[i]+'.jpg',img[i])
-
+print 'success~'
 cv2.waitKey(0)
 cv2.destroyAllWindows()
