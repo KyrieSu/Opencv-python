@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 
-img1 = cv2.imread('1.png',1) # BGR mode
-img2 = cv2.imread('2.jpg',0) # gray mode
+img1 = cv2.imread('yzu.png',1) # BGR mode
+img2 = cv2.imread('yzu.png',0) # gray mode
 val = int(raw_input('Enter a value from each pixel : ')) #convert string to int
 
 title = ['image1','image2']
@@ -19,19 +19,19 @@ H , W = img2.shape
 for i in xrange(row):
     for j in xrange(col):
         for k in xrange(pix):
-            if img1[i][j][k] > val:
-                img1[i][j][k] = img1[i][j][k] - val
+            if img1[i,j,k] > val and img1[i,j,k]+val <= 255:
+                img1[i,j,k] = img1[i,j,k] + val
             else:
-                img1[i][j][k] = 0
+                img1[i,j,k] = 255
 
 #img2[:,:] = img2[:,:] - val
 #decrease value for each in img2
 for i in xrange(H):
     for j in xrange(W):
-        if img2[i][j] > val:
-            img2[i][j]= img2[i][j] - val
+        if img2[i,j] > val and img2[i,j]+val <= 255:
+            img2[i,j]= img2[i,j] + val
         else:
-            img2[i][j] = 0
+            img2[i,j] = 0
 
 title = ['AFTER_image1','AFTER_image2']
 
