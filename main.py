@@ -15,9 +15,17 @@ def check(img):
         if np.array_equal(gray,img[H,0]):
             break;
         H+=1;
-    if not np.array_equal(gray,img[H,:]):
+    if H==row:
         return False
-    return True
+    count  = 0
+    for i in xrange(col-1):
+        if np.array_equal(img[H,i],img[H,i+1]):
+            count +=1
+    if count > (col/2):
+        return True
+    else:
+        return False
+
     # for i in xrange(0,col-1,1):
     #     if not (np.array_equal(gray,img[H,i]) and np.array_equal(img[H,i],img[H,i+1])):
     #         return False
@@ -29,7 +37,6 @@ if __name__ == "__main__":
     path = '/Volumes/Transcend/Opencv-python/272'
     for roots,dirs,files in os.walk(path):
         for f in files:
-            print f
             img = cv2.imread(r'272/'+f,1)
             if check(img):
                 print f
