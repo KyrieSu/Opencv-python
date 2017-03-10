@@ -4,6 +4,7 @@ import random
 import numpy as np
 
 def check(img):
+    # avoid exception
     if img is None:
         return False
     row , col , pix = img.shape
@@ -14,10 +15,13 @@ def check(img):
         if np.array_equal(gray,img[H,0]):
             break;
         H+=1;
-    for i in xrange(0,col-1,1):
-        if not (np.array_equal(gray,img[H,i]) and np.array_equal(img[H,i],img[H,i+1])):
-            return True
-    return False
+    if not np.array_equal(gray,img[H,:]):
+        return False
+    return True
+    # for i in xrange(0,col-1,1):
+    #     if not (np.array_equal(gray,img[H,i]) and np.array_equal(img[H,i],img[H,i+1])):
+    #         return False
+    # return True
 
 
 if __name__ == "__main__":
@@ -32,6 +36,6 @@ if __name__ == "__main__":
                 # img = cv2.imshow('ERR',img)
                 # cv2.waitKey(0)
                 count+=1
+                print count
             else:
                 pass
-        print count
