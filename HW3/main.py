@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 img_file = cv2.imread('lena.jpg', 0)
-cv2.imshow('Original Image', img_file)
 height, width = img_file.shape
 
 # From the Histogram Equalization Algorithm
@@ -33,7 +32,7 @@ def histogram():
     plt.ylabel('number of pixels')
     plt.title('Original_Image_Histogram')
     plt.plot(H_img, G)
-    plt.show()
+    plt.savefig('Histogram.jpg')
     return
 
 
@@ -47,13 +46,12 @@ def cumulative():
 
     for i in range(1, 256):
         H_cum[i] = H_cum[i - 1] + G[i]
-
     plt.figure('Cumulative Histogram')
     plt.xlabel('Gray-levels')
     plt.ylabel('Total pixels')
     plt.title('Cumulative_Histogram')
     plt.plot(H_img, H_cum)
-    plt.show()
+    plt.savefig('cmulative.jpg')
     return
 
 
@@ -71,7 +69,7 @@ def Transformation():
     plt.ylabel('transform')
     plt.title('Transformation_function')
     plt.plot(H_img, transform)
-    plt.show()
+    plt.savefig('Transform.jpg')
 
     return transform
 
@@ -97,7 +95,7 @@ def output_histogram(transform):
     plt.ylabel('Number of pixels')
     plt.title('Output_Image_Histogram')
     plt.plot(H_img, H_output_img)
-    plt.show()
+    plt.savefig('output_Histogram.jpg')
     return final_img
 
 
@@ -106,7 +104,6 @@ cumulative()
 transform_function = Transformation()
 final_image = output_histogram(transform_function)
 
-cv2.imshow('Final Image', final_image)
+cv2.imwrite('Gray_lena.jpg',img_file)
 cv2.imwrite('final_lena.jpg',final_image)
-cv2.waitKey(0)
 
