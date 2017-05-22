@@ -5,7 +5,7 @@ import math
 def myGaussian(length,weight):
     kernel = np.zeros((length,length))
     r = length/2
-    Euler = 1.0/(2.0 * math.pi * math.pow(weight,2))
+    Euler = 1.0/(2.0 * math.pi * (weight**2))
     total = 0
     kernel_radius = range(-r,r+1)
 
@@ -26,6 +26,7 @@ if __name__ == "__main__":
     img = cv2.imread('lena.jpg')
     cv2.imshow('Before',img)
     k = myGaussian(7,0.84089642)
+    # print k
     img = cv2.filter2D(img,-1,k)
     cv2.imshow('After',img)
     cv2.waitKey(0)
